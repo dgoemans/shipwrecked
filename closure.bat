@@ -1,0 +1,1 @@
+java -jar .\compiler.jar --js .\globals.js --js .\glMatrix-0.9.6.js --js .\noise.js --js .\terrain.js --js .\geometry.js --js .\textures.js --js .\model.js --js .\main.js --js_output_file g.js --compilation_level ADVANCED_OPTIMIZATIONS

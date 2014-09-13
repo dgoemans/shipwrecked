@@ -1,0 +1,30 @@
+float AI = 0.5;
+
+float sh = 100.0;
+vec4 SC = vec4(1, 1, 1, 1);
+float SI = 0.15;
+float bC = 0.3;
+float tB = 0.3;
+
+void main()
+{
+    vec3 bN = vN;
+
+    vec3 bump = bC * (texture2D(sN, vT.st).rgb - vec3(0.5, 0.5, 0.5));
+    bN = bN + (bump.x * vG + bump.y * vB);
+    bN = normalize(bN);
+
+    vec3 dir = normalize(vL);
+    float bI = max(0.0, dot(dir, bN));
+
+    vec3 r = normalize(2.0 * bI * bN - dir);
+    float dt = dot(r, vV);
+
+    vec4 s = SI * SC * max(pow(abs(dt), sh), 0.0) * bI;
+
+    vec4 t = texture2D(sD, vT.st);
+    vec4 f = t * tB * bI + vA * AI + s;
+
+    gl_FragColor = vec4(f.rgb, 1);
+
+}  

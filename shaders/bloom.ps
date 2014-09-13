@@ -1,0 +1,28 @@
+void main(void)
+{
+    vec4 sum = vec4(0);
+    vec2 tx = vec2(vT.s,vT.t);
+
+    for(int i= -4 ;i < 4; i++)
+    {
+        for (int j = -3; j < 3; j++)
+        {
+            sum += texture2D(sD, tx + vec2(j, i)*0.003) * 0.18;
+        }
+    }
+    if (texture2D(sD, tx).r < 0.4)
+    {
+       gl_FragColor = sum*sum*0.012 + texture2D(sD, tx);
+    }
+    else
+    {
+        if (texture2D(sD, tx).r < 0.6)
+        {
+            gl_FragColor = sum*sum*0.009 + texture2D(sD, tx);
+        }
+        else
+        {
+            gl_FragColor = sum*sum*0.0075 + texture2D(sD, tx);
+        }
+    }
+}

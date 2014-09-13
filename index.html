@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title></title>
+    <script src="globals.js"></script>
+    <script src="glMatrix-0.9.6.js"></script>
+    <script src="noise.js"></script>
+    <script src="model.js"></script>
+    <script src="textures.js"></script>
+    <script src="terrain.js"></script>
+    <script src="geometry.js"></script>
+
+    <script src="main.js"></script>
+    <style>
+        body
+        {
+            padding : 0px;
+            margin: 0px;
+            height : 100%;
+            overflow: hidden;
+            background-color: black;
+            font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", "Roboto Light", Calibri, Helvetica, Arial;
+        }
+
+        canvas
+        {
+            width : 100%;
+            height : 100%;
+            position: absolute;
+        }
+
+        .panel
+        {
+            border : 1px solid teal;
+            border-radius: 10px;
+            position: absolute;
+            background-color: azure;
+            padding : 20px;
+            text-align: center;
+            font-size: 1.7em;
+        }
+
+        #hud
+        {
+            width : 70%;
+            top : 30%;
+            left : 15%;
+        }
+
+        #z
+        {
+            top : 80%;
+            left : 20%;
+            width: 60%;
+            height: 15%;
+            display:none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <canvas id="glcanvas" style="border: none;"></canvas>
+    <div id="hud" class="panel"></div>
+    <div id="z" class="panel">WALK</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+java -jar yuicompressor.jar  game.min.js -o game.min.2.js --nomunge

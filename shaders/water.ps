@@ -1,0 +1,41 @@
+float sh = 50.0;
+vec4 SC = vec4(1, 1, 1, 1);
+float SI = 0.7;
+float bC = 0.9;
+
+float a = 0.9;
+
+float mV = 0.01;
+float mT = 15.0;
+float rI = 0.3;
+
+void main()
+{
+    vec2 c = vT.st;
+    float mT = sin(vX/mT*3.14);
+    c.s += mT*mV;
+    c.t += mT*mV;
+
+    vec3 bm = bC * (texture2D(sN, c).rgb - vec3(0.5, 0.5, 0.5));
+    vec3 bN = vN + (bm.x * vG + bm.y * vB);
+    bN = normalize(bN);
+
+    vec3 dir = normalize(vL);
+    float bI = max(0.0, dot(dir, bN));
+
+    vec3 r = normalize(2.0 * bI * bN - dir);
+    float dt = dot(r, vV);
+
+    vec4 s = SI * SC * max(pow(abs(dt), sh), 0.0) * bI;
+
+    vec3 r2 = -reflect(vV, bN);
+    vec4 rS = textureCube(sR, r2);
+
+    vec4 t = texture2D(sD, vT.st);
+    t.a = 1.0;
+    rS.a = 1.0;
+
+    vec4 f = rI * rS + t * bI + s;
+
+    gl_FragColor = vec4(f.rgb, a);
+}
